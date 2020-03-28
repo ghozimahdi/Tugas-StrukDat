@@ -1,0 +1,8 @@
+1.Buatlah program  (Sequential search dan Binary Search)
+2.Buat program untuk mencari suatu data dan inputan berupa kalimat, hitung konsonan,vokal,numerik.
+Seperti contoh: 
+
+
+
+
+
