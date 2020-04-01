@@ -23,12 +23,6 @@ int main()
     vector<int> v = getRandom();
     copy(v.begin(), v.end(), arr);
 
-    // cout << "Enter 5 numbers in array: " << endl;
-    // for (int i = 0; i < 5; i++)
-    // {
-    //     cin >> arr[i];
-    // }
-
     cout << endl;
     cout << "Masukan nilai yang ingin dicari :";
     cin >> req;
@@ -47,8 +41,6 @@ int main()
     if (pilih == 1)
     {
         int n = sizeof(arr) / sizeof(arr[0]);
-        //sort(arr, arr + n);
-        //showArray(arr, n);
         int result = binarySearch(arr, 0, n - 1, req);
         (result == -1) ? cout << "Number tidak ditemukan"
                        : cout << "Number ditemukan di urutan ke : " << result + 1;
@@ -98,15 +90,6 @@ void sequentialSearch(int arr1[], int req)
     }
     else
         cout << "Number tidak ditemukan";
-}
-
-void showArray(int arr[], int n)
-{
-    cout << "Array di sorting menjad : ";
-    for (int i = 0; i < n; ++i)
-        cout << arr[i] << " ";
-
-    cout << endl;
 }
 
 vector<int> getRandom()
