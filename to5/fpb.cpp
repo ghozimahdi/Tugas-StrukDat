@@ -16,6 +16,8 @@ int main()
     cout << "Masukan Bilangan 2 : ";
     cin >> bil2;
 
+    system("pause");
+
     cout << "FPB bilangan 1 dan 2 adalah: " << calcFPB(bil1, bil2) << endl;
     return 0;
 }
