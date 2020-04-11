@@ -19,7 +19,9 @@
         "numeric": "cpp",
         "sstream": "cpp",
         "streambuf": "cpp",
-        "system_error": "cpp"
+        "system_error": "cpp",
+        "cctype": "cpp",
+        "regex": "cpp"
     },
     "C_Cpp.errorSquiggles": "Enabled",
     "C_Cpp.intelliSenseEngineFallback": "Enabled",
