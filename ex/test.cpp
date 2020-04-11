@@ -6,185 +6,35 @@ using namespace std;
 
 typedef struct
 {
-    int tanggal;
-    int bulan;
-    int tahun;
+    int tgl;
+    int bln;
+    int thn;
 
-} TanggalLahir;
+} Tanggal;
 
 typedef struct
 {
     char noID[max];
     char nama[max];
     char jenisKelamin; //’L’ atau ‘P’
-    TanggalLahir tanggalLahir;
+    Tanggal t;
 
-} ResidentId;
+} KTP;
 
 typedef struct
 {
-    ResidentId ktp[max];
-    int jumlah;
+    KTP ktp[max];
+    int jml;
 
-} IdData;
+} Data_KTP;
 
-IdData data_ktp, *dataptr;
+Data_KTP data_ktp, *p;
 
-int printAll()
-{
-    system("cls");
-    for (int i = 0; i < (*dataptr).jumlah; i++)
-    {
-        cout << "-------------------------------------------------\n";
-        cout << " Data " << (i + 1) << endl
-             << endl;
-        cout << " No.ID              = " << (*dataptr).ktp[i].noID << endl;
-        cout << " Nama               = " << (*dataptr).ktp[i].nama << endl;
-        cout << " Jenis Kelamin      = " << (*dataptr).ktp[i].jenisKelamin << endl;
-        cout << " Tanggal Lahir      = " << (*dataptr).ktp[i].tanggalLahir.tanggal << endl;
-        cout << " Bulan Lahir        = " << (*dataptr).ktp[i].tanggalLahir.bulan << endl;
-        cout << " Tahun Lahir        = " << (*dataptr).ktp[i].tanggalLahir.tahun << endl;
-        cout << "-------------------------------------------------\n";
-    }
-
-    return 0;
-}
-
-void tambahData()
-{
-    system("cls");
-    dataptr = &data_ktp;
-
-    cout << " Masukan jumlah data yang ingin diinput = ";
-    cin >> (*dataptr).jumlah;
-    (*dataptr).ktp[(*dataptr).jumlah];
-    for (int i = 0; i < (*dataptr).jumlah; i++)
-    {
-        cout << "-------------------------------------------------\n";
-        cout << " Data " << (i + 1) << endl;
-        cout << "Masukan No.ID              = ";
-        cin >> (*dataptr).ktp[i].noID;
-        cout << "Masukan Nama               = ";
-        cin.ignore(10, '\n');
-        cin.getline((*dataptr).ktp[i].nama, 30);
-        cout << "Masukan Jenis Kelamin      = ";
-        cin >> (*dataptr).ktp[i].jenisKelamin;
-
-        (*dataptr).ktp[i].jenisKelamin = toupper((*dataptr).ktp[i].jenisKelamin);
-
-        cout << "Masukan Tanggal Lahir      = ";
-        cin >> (*dataptr).ktp[i].tanggalLahir.tanggal;
-        cout << "Masukan Bulan Lahir        = ";
-        cin >> (*dataptr).ktp[i].tanggalLahir.bulan;
-        cout << "Masukan Tahun Lahir        = ";
-        cin >> (*dataptr).ktp[i].tanggalLahir.tahun;
-        cout << "-------------------------------------------------\n";
-    }
-
-    system("cls");
-    cout << "   --done!--\n";
-    system("pause");
-}
-
-void filterByYear()
-{
-    system("cls");
-    int year, *yearptr;
-    yearptr = &year;
-
-    printAll();
-
-    cout << " Masukan Tahun kelahiran yang ingin ditampilkan = ";
-    cin >> year;
-    system("cls");
-    for (int i = 0; i < (*dataptr).jumlah; i++)
-    {
-        if (*yearptr != (*dataptr).ktp[i].tanggalLahir.tahun)
-            continue;
-
-        cout << "-------------------------------------------------\n";
-        cout << " Data " << (i + 1) << endl
-             << endl;
-        cout << " No.ID              = " << (*dataptr).ktp[i].noID << endl;
-        cout << " Nama               = " << (*dataptr).ktp[i].nama << endl;
-        cout << " Jenis Kelamin      = " << (*dataptr).ktp[i].jenisKelamin << endl;
-        cout << " Tanggal Lahir      = " << (*dataptr).ktp[i].tanggalLahir.tanggal << endl;
-        cout << " Bulan Lahir        = " << (*dataptr).ktp[i].tanggalLahir.bulan << endl;
-        cout << " Tahun Lahir        = " << (*dataptr).ktp[i].tanggalLahir.tahun << endl;
-        cout << "-------------------------------------------------\n";
-    }
-
-    cout << "   --done!--\n";
-    system("pause");
-}
-
-void filterByGender()
-{
-    system("cls");
-    char genderSelection, *gendPtr;
-    gendPtr = &genderSelection;
-
-    cout << " Masukan Jenis Kelamin yang ingin di Filter (L / P) = ";
-    cin >> *gendPtr;
-    *gendPtr = toupper(*gendPtr);
-
-    system("cls");
-    for (int i = 0; i < (*dataptr).jumlah; i++)
-    {
-        if (*gendPtr != (*dataptr).ktp[i].jenisKelamin)
-            continue;
-
-        cout << "-------------------------------------------------\n";
-        cout << " Data " << (i + 1) << endl
-             << endl;
-        cout << " No.ID              = " << (*dataptr).ktp[i].noID << endl;
-        cout << " Nama               = " << (*dataptr).ktp[i].nama << endl;
-        cout << " Jenis Kelamin      = " << (*dataptr).ktp[i].jenisKelamin << endl;
-        cout << " Tanggal Lahir      = " << (*dataptr).ktp[i].tanggalLahir.tanggal << endl;
-        cout << " Bulan Lahir        = " << (*dataptr).ktp[i].tanggalLahir.bulan << endl;
-        cout << " Tahun Lahir        = " << (*dataptr).ktp[i].tanggalLahir.tahun << endl;
-        cout << "-------------------------------------------------\n";
-    }
-
-    cout << "   --done!--\n";
-    system("pause");
-}
-
-void editData()
-{
-    system("cls");
-
-    int dataNumber, *dataNumberPtr;
-    dataNumberPtr = &dataNumber;
-
-    printAll();
-
-    cout << " Masukan nomor Data yang ingin diubah = ";
-    cin >> *dataNumberPtr;
-    *dataNumberPtr -= 1;
-    cout << "-------------------------------------------------\n";
-    cout << " Data " << (*dataNumberPtr + 1) << endl;
-    cout << "Masukan No.ID              = ";
-    cin >> (*dataptr).ktp[*dataNumberPtr].noID;
-    cout << "Masukan Nama               = ";
-    cin.ignore(10, '\n');
-    cin.getline((*dataptr).ktp[*dataNumberPtr].nama, 30);
-    cout << "Masukan Jenis Kelamin      = ";
-    cin >> (*dataptr).ktp[*dataNumberPtr].jenisKelamin;
-
-    (*dataptr).ktp[*dataNumberPtr].jenisKelamin = toupper((*dataptr).ktp[*dataNumberPtr].jenisKelamin);
-
-    cout << "Masukan Tanggal Lahir      = ";
-    cin >> (*dataptr).ktp[*dataNumberPtr].tanggalLahir.tanggal;
-    cout << "Masukan Bulan Lahir        = ";
-    cin >> (*dataptr).ktp[*dataNumberPtr].tanggalLahir.bulan;
-    cout << "Masukan Tahun Lahir        = ";
-    cin >> (*dataptr).ktp[*dataNumberPtr].tanggalLahir.tahun;
-    cout << "-------------------------------------------------\n";
-
-    cout << "   --done!--\n";
-    system("pause");
-}
+void editData();
+int tampilkanData();
+void tambahData();
+void filterByYear();
+void filterByGender();
 
 int main()
 {
@@ -193,7 +43,7 @@ int main()
     do
     {
         system("cls");
-        cout << "-------- Pointer to Struct data Manipulation --------" << endl;
+        cout << "Program KTP" << endl;
         cout << " 1. Data Input " << endl;
         cout << " 2. Filter by Years of birth" << endl;
         cout << " 3. Filter by Gender" << endl;
@@ -224,7 +74,7 @@ int main()
             break;
 
         case 5:
-            printAll();
+            tampilkanData();
             cout << "   --done!--\n";
             system("pause");
             break;
@@ -233,10 +83,165 @@ int main()
     } while (select != 6);
 
     system("cls");
-    cout << " Nama  : Aulia Ilham Zukri\n";
-    cout << " NIM   : 20190801368\n";
+    cout << " Nama  : Ghozi Mahdi\n";
+    cout << " NIM   : 20190801355\n";
     cout << " ----------------------------------\n";
-    cout << "           -Terimakasih- " << endl;
     system("pause");
     return 0;
+}
+
+int tampilkanData()
+{
+    system("cls");
+    for (int i = 0; i < (*p).jml; i++)
+    {
+        cout << "-------------------------------------------------\n";
+        cout << " Data " << (i + 1) << endl
+             << endl;
+        cout << " No.ID              = " << (*p).ktp[i].noID << endl;
+        cout << " Nama               = " << (*p).ktp[i].nama << endl;
+        cout << " Jenis Kelamin      = " << (*p).ktp[i].jenisKelamin << endl;
+        cout << " Tanggal Lahir      = " << (*p).ktp[i].t.tgl << endl;
+        cout << " Bulan Lahir        = " << (*p).ktp[i].t.bln << endl;
+        cout << " Tahun Lahir        = " << (*p).ktp[i].t.thn << endl;
+        cout << "-------------------------------------------------\n";
+    }
+
+    return 0;
+}
+
+void tambahData()
+{
+    system("cls");
+    p = &data_ktp;
+
+    cout << " Masukan jml data yang ingin diinput = ";
+    cin >> (*p).jml;
+    (*p).ktp[(*p).jml];
+    for (int i = 0; i < (*p).jml; i++)
+    {
+        cout << "-------------------------------------------------\n";
+        cout << " Data " << (i + 1) << endl;
+        cout << "Masukan No.ID              = ";
+        cin >> (*p).ktp[i].noID;
+        cout << "Masukan Nama               = ";
+        cin.ignore(10, '\n');
+        cin.getline((*p).ktp[i].nama, 30);
+        cout << "Masukan Jenis Kelamin      = ";
+        cin >> (*p).ktp[i].jenisKelamin;
+
+        (*p).ktp[i].jenisKelamin = toupper((*p).ktp[i].jenisKelamin);
+
+        cout << "Masukan Tanggal Lahir      = ";
+        cin >> (*p).ktp[i].t.tgl;
+        cout << "Masukan Bulan Lahir        = ";
+        cin >> (*p).ktp[i].t.bln;
+        cout << "Masukan Tahun Lahir        = ";
+        cin >> (*p).ktp[i].t.thn;
+        cout << "-------------------------------------------------\n";
+    }
+
+    system("cls");
+    cout << "   --done!--\n";
+    system("pause");
+}
+
+void filterByYear()
+{
+    system("cls");
+    int year, *yearptr;
+    yearptr = &year;
+
+    tampilkanData();
+
+    cout << " Masukan Tahun kelahiran yang ingin ditampilkan = ";
+    cin >> year;
+    system("cls");
+    for (int i = 0; i < (*p).jml; i++)
+    {
+        if (*yearptr != (*p).ktp[i].t.thn)
+            continue;
+
+        cout << "-------------------------------------------------\n";
+        cout << " Data " << (i + 1) << endl
+             << endl;
+        cout << " No.ID              = " << (*p).ktp[i].noID << endl;
+        cout << " Nama               = " << (*p).ktp[i].nama << endl;
+        cout << " Jenis Kelamin      = " << (*p).ktp[i].jenisKelamin << endl;
+        cout << " Tanggal Lahir      = " << (*p).ktp[i].t.tgl << endl;
+        cout << " Bulan Lahir        = " << (*p).ktp[i].t.bln << endl;
+        cout << " Tahun Lahir        = " << (*p).ktp[i].t.thn << endl;
+        cout << "-------------------------------------------------\n";
+    }
+
+    cout << "   --done!--\n";
+    system("pause");
+}
+
+void filterByGender()
+{
+    system("cls");
+    char genderSelection, *gendPtr;
+    gendPtr = &genderSelection;
+
+    cout << " Masukan Jenis Kelamin yang ingin di Filter (L / P) = ";
+    cin >> *gendPtr;
+    *gendPtr = toupper(*gendPtr);
+
+    system("cls");
+    for (int i = 0; i < (*p).jml; i++)
+    {
+        if (*gendPtr != (*p).ktp[i].jenisKelamin)
+            continue;
+
+        cout << "-------------------------------------------------\n";
+        cout << " Data " << (i + 1) << endl
+             << endl;
+        cout << " No.ID              = " << (*p).ktp[i].noID << endl;
+        cout << " Nama               = " << (*p).ktp[i].nama << endl;
+        cout << " Jenis Kelamin      = " << (*p).ktp[i].jenisKelamin << endl;
+        cout << " Tanggal Lahir      = " << (*p).ktp[i].t.tgl << endl;
+        cout << " Bulan Lahir        = " << (*p).ktp[i].t.bln << endl;
+        cout << " Tahun Lahir        = " << (*p).ktp[i].t.thn << endl;
+        cout << "-------------------------------------------------\n";
+    }
+
+    cout << "   --done!--\n";
+    system("pause");
+}
+
+void editData()
+{
+    system("cls");
+
+    int dataNumber, *dataNumberPtr;
+    dataNumberPtr = &dataNumber;
+
+    tampilkanData();
+
+    cout << " Masukan nomor Data yang ingin diubah = ";
+    cin >> *dataNumberPtr;
+    *dataNumberPtr -= 1;
+    cout << "-------------------------------------------------\n";
+    cout << " Data " << (*dataNumberPtr + 1) << endl;
+    cout << "Masukan No.ID              = ";
+    cin >> (*p).ktp[*dataNumberPtr].noID;
+    cout << "Masukan Nama               = ";
+    cin.ignore(10, '\n');
+    cin.getline((*p).ktp[*dataNumberPtr].nama, 30);
+    cout << "Masukan Jenis Kelamin      = ";
+    cin >> (*p).ktp[*dataNumberPtr].jenisKelamin;
+
+    (*p).ktp[*dataNumberPtr].jenisKelamin = toupper((*p).ktp[*dataNumberPtr].jenisKelamin);
+
+    cout << "Masukan Tanggal Lahir      = ";
+    cin >> (*p).ktp[*dataNumberPtr].t.tgl;
+    cout << "Masukan Bulan Lahir        = ";
+    cin >> (*p).ktp[*dataNumberPtr].t.bln;
+    cout << "Masukan Tahun Lahir        = ";
+    cin >> (*p).ktp[*dataNumberPtr].t.thn;
+    cout << "-------------------------------------------------\n";
+
+    cout << "   --done!--\n";
+    system("pause");
 }
