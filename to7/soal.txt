@@ -1,0 +1,7 @@
+Tugas Pertemuan ke-7
+Soal
+Diketahui :
+1.	        w1 = 5;   p1 = 15;  	w2 = 6;    p2 = 12; 
+	w3 = 10;  p3 = 50;	w4 = 5;    p4 = 10
+	Kapasitas knapsack K = 16. Selesaikan dengan Greedy:0/1 Knapsack
+
