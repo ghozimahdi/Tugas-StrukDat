@@ -23,7 +23,6 @@ Buku *bantu;
 int isEmpty();
 void tambahbelakang(Buku databaru);
 void cetak();
-void hapusbelakang();
 void editData(int id, int hargaBaru);
 
 int main()
